@@ -42,12 +42,12 @@
    ### Shipment API:
     http://localhost:8080/shipments?q=109347263,123456891
    ### Pricing API:
-    http://localhost:8080/pricing?q=109347263,123456891,109347264,123456892
+    http://localhost:8080/pricing?q=NL,US,AF
    ### Tracking API:
     http://localhost:8080/track?q=109347263,123456891
 
   ### Aggregator Service API:
-    http://localhost:8081/api/aggregation?pricing=109347263,123456862,109347261&track=109347263,123456862,109347261&shipments=109347263,123456862,109347261
+    http://localhost:8081/api/aggregation?pricing=NL,US,AF&track=109347263,123456862,109347261&shipments=109347263,123456862,109347261
    This API we can execute multiple number of time. according to the request parameters which we want to send
 
 
