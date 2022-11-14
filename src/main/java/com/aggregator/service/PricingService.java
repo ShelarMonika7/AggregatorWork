@@ -31,7 +31,6 @@ public class PricingService implements ProcessingService {
     Set<String> queue = new LinkedHashSet<>();
 
     boolean notStarted = true;
-    boolean executed = true;
 
     @Value("${PRICING_PATH}")
     private String pricingPath;
@@ -53,7 +52,7 @@ public class PricingService implements ProcessingService {
      * Requesting the backend service API to fetch the response
      * @param newQueue
      */
-    public boolean process(Set<String> newQueue) {
+    public void process(Set<String> newQueue) {
         logger.info("processing started for pricing");
         Map<String, Double> mapResult = new HashMap<>();
         try {
@@ -61,8 +60,7 @@ public class PricingService implements ProcessingService {
                 logger.debug("starting query ,Queue {}", newQueue);
                 mapResult = restTemplate.getForObject(new URI(urlUtility.getRequiredUrl(pricingPath, newQueue)), Map.class);
                 logger.debug("Queue {}, Pricing Result: {}", newQueue, mapResult);
-                executed = true;
-            }else {executed=false;}
+            }
 
             if (mapResult != null && !mapResult.isEmpty()) {
                 result.putAll(mapResult);
@@ -80,8 +78,6 @@ public class PricingService implements ProcessingService {
             logger.error(ex.getMessage(),ex);
         }
         logger.info("processing done for pricing");
-        return executed;
-
     }
 
     public Double getResult(String in) {

@@ -12,7 +12,6 @@ public class Timer implements Runnable {
 
     LocalDateTime end;
     ProcessingService processingService;
-    boolean execute;
 
     public Timer(ProcessingService processingService) {
         this.processingService = processingService;
@@ -21,12 +20,11 @@ public class Timer implements Runnable {
 
     @Override
     public void run() {
-    	this.execute = true;
-        while (this.execute) {
+        while (true) {
 
             while (LocalDateTime.now().isAfter(end)) {
                 logger.debug("ThreadId: {}, Timer threshold reached for {}",String.valueOf(Thread.currentThread().getId()), this.processingService.getClass().getName());      
-                execute = this.processingService.process(this.processingService.getQueue());
+                this.processingService.process(this.processingService.getQueue());
                 reset();
                 break;
             }

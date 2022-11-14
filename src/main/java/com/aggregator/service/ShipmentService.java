@@ -35,7 +35,6 @@ public class ShipmentService implements ProcessingService {
     ExecutorService executor = Executors.newSingleThreadExecutor();
 
     boolean notStarted = true;
-    boolean executed = true;
 
     @Value("${SHIPMENT_PATH}")
     private String shipmentPath;
@@ -58,15 +57,14 @@ public class ShipmentService implements ProcessingService {
      * Requesting the backend service API to fetch the response
      * @param newQueue
      */
-    public boolean process(Set<String> newQueue) {
+    public void process(Set<String> newQueue) {
         Map<String, List<String>> mapResult = new HashMap<>();
         logger.info("processing started for shipment");
         try {
             if(!newQueue.isEmpty()) {
                 mapResult = restTemplate.getForObject(new URI(urlUtility.getRequiredUrl(shipmentPath, newQueue)), Map.class);
                 logger.debug("Queue {}, Shipment Result: {}",newQueue,  mapResult);
-                executed = true;
-            }else {executed = false;}
+            }
 
             if (mapResult != null && !mapResult.isEmpty()) {
                 result.putAll(mapResult);
@@ -83,7 +81,6 @@ public class ShipmentService implements ProcessingService {
             logger.error(ex.getMessage(),ex);
         }
         logger.info("processing done for shipment");
-        return executed;
     }
 
     public List<String> getResult(String in) {

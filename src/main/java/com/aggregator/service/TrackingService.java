@@ -32,7 +32,6 @@ public class TrackingService implements ProcessingService {
     Set<String> queue = new LinkedHashSet<>();
     ExecutorService executor = Executors.newSingleThreadExecutor();
     boolean notStarted = true;
-    boolean executed = true;
     Timer timer = new Timer(this);
 
     @Value("${TRACK_PATH}")
@@ -55,15 +54,14 @@ public class TrackingService implements ProcessingService {
      * Requesting the backend service API to fetch the response
      * @param newQueue
      */
-    public boolean process(Set<String> newQueue) {
+    public void process(Set<String> newQueue) {
         Map<String, String> mapResult = new HashMap<>();
         logger.info("processing started for tracking");
         try {
             if(!newQueue.isEmpty()) {
                 mapResult = restTemplate.getForObject(new URI(urlUtility.getRequiredUrl(trackPath, newQueue)), Map.class);
                 logger.debug("Queue {} Tracking Result: {}",newQueue, mapResult);
-                executed = true;
-            }else {executed = false;}
+            }
 
             if (mapResult != null && !mapResult.isEmpty()) {
                 result.putAll(mapResult);
@@ -80,7 +78,6 @@ public class TrackingService implements ProcessingService {
             logger.error(ex.getMessage(),ex);
         }
         logger.info("processing done for Tracking");
-        return executed;
     }
 
     public String getResult(String in) {

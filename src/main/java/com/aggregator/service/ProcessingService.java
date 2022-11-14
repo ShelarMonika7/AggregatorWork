@@ -7,7 +7,7 @@ public interface ProcessingService {
 
     Set<String> queue = new HashSet<>();
 
-    boolean process(Set<String> queue);
+    void process(Set<String> queue);
 
     Set<String> getQueue();
 }

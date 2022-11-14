@@ -31,7 +31,7 @@ public class PricingServiceTest {
         Map<String, Double> mapResult = new HashMap<>();
         mapResult.put("109347263",98.57359813316681);
         MockitoAnnotations.initMocks(this);
-        Mockito.when(restTemplate.getForObject(new URI("http://localhost:8080/pricing?q=109347263,123456891,109347264,123456892,123456893"),Map.class)).
+        Mockito.when(restTemplate.getForObject(new URI("http://localhost:8080/pricing?q=NL,CN,BR,AL,AF"),Map.class)).
                 thenReturn(mapResult);
         ReflectionTestUtils.setField(urlUtility, "baseUrl", "http://localhost:8080");
         ReflectionTestUtils.setField(pricingService,"urlUtility",urlUtility);
@@ -40,7 +40,7 @@ public class PricingServiceTest {
 
     @Test
     public void testPricing(){
-        String prices = "109347263,123456891,109347264,123456892,123456893";
+        String prices = "NL,CN,BR,AL,AF";
         String[] priceList = prices.split(",");
         Arrays.stream(priceList).forEach(price -> {
             pricingService.submit(price);

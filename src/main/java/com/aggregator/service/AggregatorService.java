@@ -63,6 +63,7 @@ public class AggregatorService {
         trackingService.clearResult(trackList);
         shipmentService.clearResult(shipList);
         LOGGER.info("Cleared all the responses");
+        
         finalResult.put("pricing", pricingResult);
         finalResult.put("shipments", shipResult);
         finalResult.put("track", trackResult);
@@ -109,17 +110,14 @@ public class AggregatorService {
     private void submitAllParameters(String[] priceList, String[] trackList, String[] shipList) {
         Arrays.stream(priceList).forEach(price -> {
             pricingService.submit(price);
-            LOGGER.info("submit price {}", price);
         });
 
         Arrays.stream(trackList).forEach(track -> {
             trackingService.submit(track);
-            LOGGER.info("submit trsck {}", track);
         });
 
         Arrays.stream(shipList).forEach(ship -> {
             shipmentService.submit(ship);
-            LOGGER.info("submit ship {}", ship);
         });
     }
 

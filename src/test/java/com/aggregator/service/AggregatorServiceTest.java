@@ -13,6 +13,15 @@ public class AggregatorServiceTest {
 
     @InjectMocks
     AggregatorService aggregatorService;
+    
+    @Mock
+    PricingService pricingService;
+    
+    @Mock
+    TrackingService trackingService;
+    
+    @Mock
+    ShipmentService shipmentService;
 
     @BeforeEach
     public void init(){
@@ -23,7 +32,7 @@ public class AggregatorServiceTest {
     @Test
     public void givenRequestParameters_whenFiveParametersRequested_thenRetrieveResponseImmediately(){
 
-        aggregatorService.callBulkApis("abc","xyz","fgdf");
+        aggregatorService.callBulkApis("NL,CN,BR,AL,AF","109347263,123456862","109347263,123456862");
         Assertions.assertEquals("RRR","RRR");
     }
 
