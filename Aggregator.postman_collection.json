@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "12fd9546-98f0-4531-b80c-4fd54d9b7fb2",
+		"name": "Aggregator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Shipment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pricing",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tracking",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get 1st Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/aggregation?pricing=NL,CN,BR,AL,AF,IN&track=109347263,123456862&shipments=109347263,123456862",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"aggregation"
+					],
+					"query": [
+						{
+							"key": "pricing",
+							"value": "NL,CN,BR,AL,AF,IN"
+						},
+						{
+							"key": "track",
+							"value": "109347263,123456862"
+						},
+						{
+							"key": "shipments",
+							"value": "109347263,123456862"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get 2nd Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/aggregation?pricing=DZ,AS&track=109347263,109347264,109347265&shipments=109347263,109347264,109347263",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"aggregation"
+					],
+					"query": [
+						{
+							"key": "pricing",
+							"value": "DZ,AS"
+						},
+						{
+							"key": "track",
+							"value": "109347263,109347264,109347265"
+						},
+						{
+							"key": "shipments",
+							"value": "109347263,109347264,109347263"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
