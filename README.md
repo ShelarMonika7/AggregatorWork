@@ -1,4 +1,20 @@
 # Aggregator
+## Run Instruction
+### Required Tools
+    1. Eclipse(STS must be installed from eclipse marketplace)
+    2. JAVA 8/11
+    3. Maven
+    4. Postman
+    
+### Runing steps
+    1. Clone the project from git
+    2. Open Eclipse and import project with maven
+    3. Right Click on the project and goto maven and Update the project
+    4. Right Click on the project select Run As with Spring boot app
+    5. You must see Started AggregatorApplication
+    6. Application is running now
+    7. Goto Postman and import the postman collection from the cloned project directory
+    8. Send the multiple request from postman simultaneously and then see the result.
 
 # TNT Digital
 
